@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="./favicon.ico" sizes="32x32" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#e1e4de" />
+    <meta
+      name="description"
+      content="Joseph Sanchez — Software Engineer focused on cloud and backend systems. Explore projects, skills, and contact info in an interactive desktop."
+    />
+    <meta property="og:title" content="Joseph Sanchez | Software Engineer" />
+    <meta
+      property="og:description"
+      content="Cloud & backend engineer working with AWS, Terraform, Java/Spring, and React. Explore the portfolio as a desktop OS."
+    />
+    <meta property="og:type" content="website" />
+    <title>Joseph Sanchez | Software Engineer</title>
+    <script>
+      // Apply the saved theme before first paint; light unless the visitor chose dark
+      try {
+        document.documentElement.dataset.theme = localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
+      } catch {
+        document.documentElement.dataset.theme = 'light';
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <h1>Joseph Sanchez — Software Engineer</h1>
+      <p>Cloud &amp; backend systems. Email: joeychez23@outlook.com</p>
+      <p><a href="./Resume.pdf">Resume (PDF)</a> · <a href="https://github.com/joeychez23">GitHub</a> · <a href="https://www.linkedin.com/in/joseph-sanchez-b93b2b237/">LinkedIn</a></p>
+    </noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

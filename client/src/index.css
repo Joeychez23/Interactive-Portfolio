@@ -1,0 +1,307 @@
+@import 'tailwindcss';
+
+/* Signage-sheet look from the reference artwork: dark panels laid out on a board, yellow
+   and blue tabs, grey pattern work, a monoline display face, wide grotesk labels, mono
+   spec text and serif mottos. Colours are tokens; the dark theme overrides them below.
+
+   Roles: `board` is the page, `fg` is text and rules on the board, `ink` is a signage
+   panel, `paper` a white plate. Panels and plates keep their look in both themes. */
+@theme {
+  --color-board: #e1e4de;
+  --color-board-deep: #d0d4cd;
+  --color-fg: #1b1c1e;
+  --color-muted: #6a6d69;
+  --color-ink: #1b1c1e;
+  --color-ink-2: #242528;
+  --color-ink-3: #303135;
+  --color-pattern: #4b4e52;
+  --color-pattern-soft: #393b3f;
+  --color-paper: #f5f5f0;
+  --color-dim: #9b9e9a;
+  --color-yellow: #ffd300;
+  --color-blue: #2f55ff;
+
+  --font-display: 'Saira Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Archivo Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+}
+
+@layer base {
+  :root[data-theme='dark'] {
+    --color-board: #0e0f10;
+    --color-board-deep: #18191b;
+    --color-fg: #e9e9e3;
+    --color-muted: #8e918c;
+    --color-ink: #1f2023;
+    --color-ink-2: #26272b;
+    --color-ink-3: #34353a;
+    --color-pattern: #45484d;
+    --color-pattern-soft: #34363a;
+    --color-paper: #ecece6;
+    color-scheme: dark;
+  }
+
+  body {
+    overflow-x: clip; /* decoration that pokes past the edge never makes the page scroll sideways */
+    background: var(--color-board);
+    color: var(--color-fg);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.25s;
+  }
+
+  ::selection {
+    background: var(--color-yellow);
+    color: #1b1c1e;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 2px;
+  }
+}
+
+/* Layers children in one grid cell instead of positioning them: pair with `grid`, then
+   place each child with self-* / justify-self-* (later children paint on top) */
+@utility stack {
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  & > * {
+    grid-area: 1 / 1;
+  }
+}
+
+@layer components {
+  /* Display face for names and titles */
+  .t-code {
+    font-family: var(--font-display);
+    font-weight: 430;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    line-height: 0.9;
+  }
+  /* Wide grotesk labels */
+  .t-head {
+    font-family: var(--font-sans);
+    font-stretch: 112%;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    line-height: 1.05;
+  }
+  /* Tiny spec text on tabs */
+  .t-spec {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  /* Serif mottos */
+  .t-motto {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
+
+  /* Registration squares just outside the corners of the block this wraps. The wrapper
+     reaches out past the block by the gap and paints a square in each of its corners. */
+  .crop {
+    --crop: 0.75rem;
+    margin-inline: calc(var(--crop) * -1);
+    padding: var(--crop);
+    background:
+      linear-gradient(var(--color-fg) 0 0) left top / 8px 8px no-repeat,
+      linear-gradient(var(--color-fg) 0 0) right top / 8px 8px no-repeat,
+      linear-gradient(var(--color-fg) 0 0) left bottom / 8px 8px no-repeat,
+      linear-gradient(var(--color-fg) 0 0) right bottom / 8px 8px no-repeat;
+    @media (width >= 64rem) {
+      --crop: 1.25rem;
+    }
+  }
+
+  /* Glitch, played only when something is pointed at or arrives: the text shears into
+     bands while a yellow and a blue copy split off either side (see GlitchText). The
+     copies share the text's grid cell rather than being positioned over it. */
+  .glitch {
+    display: inline-grid;
+  }
+  .glitch > *,
+  .glitch::before,
+  .glitch::after {
+    grid-area: 1 / 1;
+  }
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    pointer-events: none;
+    opacity: 0;
+  }
+  .glitch::before {
+    color: var(--color-yellow);
+  }
+  .glitch::after {
+    color: var(--color-blue);
+  }
+  .glitch.is-glitching {
+    animation: glitch-shear 0.42s steps(1) both;
+  }
+  .glitch.is-glitching::before {
+    animation: glitch-split-a 0.42s steps(1) both;
+  }
+  .glitch.is-glitching::after {
+    animation: glitch-split-b 0.42s steps(1) both;
+  }
+
+  /* Hovering or focusing a `glitch-hover` element glitches the glitch text inside it (a
+     CSS animation restarts each time its rule starts applying) */
+  .glitch-hover:hover .glitch,
+  .glitch-hover:focus-visible .glitch {
+    animation: glitch-shear 0.42s steps(1) both;
+  }
+  .glitch-hover:hover .glitch::before,
+  .glitch-hover:focus-visible .glitch::before {
+    animation: glitch-split-a 0.42s steps(1) both;
+  }
+  .glitch-hover:hover .glitch::after,
+  .glitch-hover:focus-visible .glitch::after {
+    animation: glitch-split-b 0.42s steps(1) both;
+  }
+
+  /* Images that shear into bands for a moment (the portrait, on hover), and panels that
+     shear in as they arrive (the chosen project) */
+  .shear.is-glitching,
+  .glitch-in {
+    animation: glitch-shear 0.42s steps(1) both;
+  }
+
+  /* Project screenshots: pointing at one tears it into bands that jump sideways and snap
+     back, each at its own moment, a couple tinted like the glitch text's copies */
+  .glitch-band {
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .group:hover .glitch-band,
+  .group:focus-visible .glitch-band {
+    animation: band-jump 0.36s steps(1) var(--delay);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .shear.is-glitching,
+    .glitch-in,
+    .glitch-hover:is(:hover, :focus-visible) .glitch,
+    .glitch-hover:is(:hover, :focus-visible) .glitch::before,
+    .glitch-hover:is(:hover, :focus-visible) .glitch::after,
+    .glitch.is-glitching,
+    .glitch.is-glitching::before,
+    .glitch.is-glitching::after,
+    .group:is(:hover, :focus-visible) .glitch-band {
+      animation: none;
+    }
+  }
+}
+
+@keyframes glitch-shear {
+  0%,
+  100% {
+    clip-path: none;
+    transform: none;
+  }
+  14% {
+    clip-path: inset(8% 0 60% 0);
+    transform: translateX(-6px);
+  }
+  28% {
+    clip-path: inset(48% 0 20% 0);
+    transform: translateX(5px);
+  }
+  42% {
+    clip-path: inset(22% 0 46% 0);
+    transform: translateX(-3px);
+  }
+  56% {
+    clip-path: inset(70% 0 4% 0);
+    transform: translateX(4px);
+  }
+  70% {
+    clip-path: none;
+    transform: none;
+  }
+}
+
+@keyframes glitch-split-a {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    clip-path: inset(0 0 66% 0);
+    transform: translate(-5px, -1px);
+  }
+  30% {
+    opacity: 1;
+    clip-path: inset(40% 0 30% 0);
+    transform: translate(4px, 1px);
+  }
+  50% {
+    opacity: 1;
+    clip-path: inset(72% 0 0 0);
+    transform: translate(-3px, 0);
+  }
+  64% {
+    opacity: 0;
+  }
+}
+
+@keyframes glitch-split-b {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+    clip-path: inset(30% 0 44% 0);
+    transform: translate(6px, 1px);
+  }
+  38% {
+    opacity: 1;
+    clip-path: inset(4% 0 70% 0);
+    transform: translate(-4px, -1px);
+  }
+  58% {
+    opacity: 1;
+    clip-path: inset(56% 0 14% 0);
+    transform: translate(3px, 0);
+  }
+  72% {
+    opacity: 0;
+  }
+}
+
+@keyframes band-jump {
+  0% {
+    opacity: 1;
+    transform: translateX(var(--shift));
+  }
+  35% {
+    opacity: 1;
+    transform: translateX(calc(var(--shift) * -0.6));
+  }
+  70% {
+    opacity: 1;
+    transform: translateX(calc(var(--shift) * 0.3));
+  }
+  100% {
+    opacity: 0;
+    transform: none;
+  }
+}

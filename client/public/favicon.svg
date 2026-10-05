@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- The nav's corner tile: the person mark in ink on the yellow square, drawn a little
+       larger than in the nav so it still reads at tab size -->
+  <rect width="64" height="64" fill="#ffd300"/>
+  <g fill="#1b1c1e" transform="translate(8.5 8) scale(0.47)">
+    <circle cx="50" cy="20" r="14"/>
+    <rect x="22" y="40" width="56" height="14" rx="7"/>
+    <rect x="35" y="58" width="30" height="14"/>
+    <rect x="35" y="76" width="12" height="20"/>
+    <rect x="53" y="76" width="12" height="20"/>
+  </g>
+</svg>

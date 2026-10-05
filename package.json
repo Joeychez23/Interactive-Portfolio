@@ -1,0 +1,19 @@
+{
+  "name": "interactive-portfolio",
+  "version": "1.0.0",
+  "description": "Joseph Sanchez's portfolio, presented as a desktop OS with a built-in terminal",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "npm run build && cd server && npm start",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm run dev\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "build": "cd client && npm run build",
+    "test": "cd client && npm test"
+  },
+  "keywords": [],
+  "author": "Joseph Sanchez",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^10.0.5"
+  }
+}
