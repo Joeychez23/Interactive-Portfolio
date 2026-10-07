@@ -116,6 +116,14 @@ export const projects = [
     link: 'https://chess.aws-prac-route53.com/',
   },
   {
+    slug: 'city',
+    title: 'City Builder',
+    description: 'A city builder written with three.js and Vite.',
+    tech: ['Vite', 'three.js', 'MongoDB'],
+    image: './city-builder.png',
+    link: 'https://city-builder.aws-prac-route53.com/',
+  },
+  {
     slug: 'tone-radar',
     title: 'Tone Radar',
     description: 'Write an email or Slack message and every sentence gets a heat score for passive-aggression, blame, hedging, and unclear asks. Then apply a rewrite that JEV has checked to be cooler, keep your meaning, and read naturally.',
