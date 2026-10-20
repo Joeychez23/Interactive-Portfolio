@@ -127,11 +127,11 @@ export const tools = [
 export const projects = [
   {
     slug: 'chess',
-    title: 'Chess',
+    title: 'Chess (work in progress)',
     description: 'A chess game drawn on HTML5 Canvas with a computer opponent and email challenges, served from S3 + CloudFront on a Route 53 domain. Every move is re-validated by a Node.js Lambda behind API Gateway against the board stored in DynamoDB; all infrastructure is provisioned with Terraform.',
-    tech: ['Canvas', 'Webpack', 'Lambda', 'DynamoDB', 'Terraform'],
+    tech: ['Canvas', 'Webpack', 'Lambda', 'DynamoDB', 'Terraform', 'Stockfish'],
     image: './chess.jpg',
-    link: 'https://chess.aws-prac-route53.com/',
+    link: 'https://github.com/Joeychez23/Chess',
   },
   {
     slug: 'city',
