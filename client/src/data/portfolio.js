@@ -10,7 +10,7 @@ export const profile = {
   email: 'joeychez23@outlook.com',
   phone: '+1 (425) 209-8421',
   location: 'Bothell, WA',
-  bio: 'Skilled Software Engineer with experience developing cloud infrastructure using AWS/Terraform, along with developing applications in Spring, React, and Webpack. Proficient in multiple programming languages, including Java, JavaScript, Python, and C#. Adept at developing backend infrastructure, integrating secure authentication, and contributing to content management systems. Looking to leverage my skills to contribute to innovative projects and integrate myself into a robust team where I can learn from my peers and continue my journey as a Software Engineer.',
+  bio: 'Skilled Software Engineer with experience developing cloud infrastructure using AWS/Terraform, along with developing applications in Spring, React, .NET, and three.js. Proficient in multiple programming languages, including Java, JavaScript, Python, and C#. Adept at developing backend infrastructure, integrating secure authentication, building simulation systems, and contributing to content management systems. Looking to leverage my skills to contribute to innovative projects and integrate myself into a robust team where I can learn from my peers and continue my journey as a Software Engineer.',
 };
 
 export const highlights = [
@@ -66,7 +66,25 @@ export const work = [
       },
     ],
   },
-  {
+    {
+    company: 'Personal Projects',
+    location: 'Bothell, WA',
+    roles: [
+      {
+        title: 'Independent Software Development',
+        start: 'December 2025',
+        end: 'Present',
+        points: [
+          'Design, build, and deploy full-stack web applications end to end, including City Builder, Chess, Triage, and Tone Radar (see Projects), each live on its own subdomain.',
+          'Provision AWS hosting with Terraform: S3 + CloudFront static sites, Lambda functions behind API Gateway, and Nginx on EC2 behind an Application Load Balancer and Auto Scaling group, with Route 53 DNS and ACM certificates.',
+          'Integrate AI models and third-party services, including TypeSafe Jev for text scoring and job ranking, Apify for job-board scraping, and JWT and Auth0 for authentication.',
+          'Practice data structures and algorithms on LeetCode, with 551 problems solved in total (258 Medium, 22 Hard), mostly in JavaScript and Java.',
+        ],
+        tech: ['Terraform', 'S3 + CloudFront', 'Lambda', 'API Gateway', 'EC2', 'Nginx', 'ALB', 'Route 53', 'TypeSafe Jev', 'Apify', 'JWT', 'Auth0'],
+      },
+    ],
+  },
+    {
     company: 'Tilosi',
     location: 'Bothell, WA',
     roles: [
@@ -110,32 +128,32 @@ export const projects = [
   {
     slug: 'chess',
     title: 'Chess',
-    description: 'An immersive chess game that leverages HTML5 canvas. Uses AWS CloudFront and S3 for seamless content delivery and efficient storage management, along with AWS Lambda functions for the backend.',
-    tech: ['Webpack', 'Lambda', 'DynamoDB'],
+    description: 'A chess game drawn on HTML5 Canvas with a computer opponent and email challenges, served from S3 + CloudFront on a Route 53 domain. Every move is re-validated by a Node.js Lambda behind API Gateway against the board stored in DynamoDB; all infrastructure is provisioned with Terraform.',
+    tech: ['Canvas', 'Webpack', 'Lambda', 'DynamoDB', 'Terraform'],
     image: './chess.jpg',
     link: 'https://chess.aws-prac-route53.com/',
   },
   {
     slug: 'city',
-    title: 'City Builder',
-    description: 'A city builder written with three.js and Vite.',
-    tech: ['Vite', 'three.js', 'MongoDB'],
+    title: 'City Builder (work in progress)',
+    description: 'A 3D city-building game in three.js, built with Claude Code (about 25,000 lines of JavaScript), with a road network of curved segments, A* trip routing, and lane-level traffic that queues at traffic lights, give-way junctions, and roundabouts. Simulates zoning, building growth, utilities, and a production-chain economy across 13 procedurally generated island maps, with compact saves and an Express/MongoDB account API with JWT auth.',
+    tech: ['three.js', 'Vite', 'Express', 'MongoDB'],
     image: './city-builder.png',
     link: 'https://city-builder.aws-prac-route53.com/',
   },
   {
     slug: 'tone-radar',
     title: 'Tone Radar',
-    description: 'Write an email or Slack message and every sentence gets a heat score for passive-aggression, blame, hedging, and unclear asks. Then apply a rewrite that JEV has checked to be cooler, keep your meaning, and read naturally.',
-    tech: ['Nginx', 'JavaScript', 'MongoDB', 'JEV'],
+    description: 'A PWA that scores every sentence of an email for passive-aggression, blame, hedging, and unclear asks, and suggests rewrites that an AI model checks keep the original meaning.',
+    tech: ['React', 'Express', 'MongoDB', 'TypeSafe Jev'],
     image: './radar.jpg',
     link: 'https://tone-radar.aws-prac-route53.com/',
   },
   {
     slug: 'triage',
     title: 'Triage',
-    description: 'Triage searches LinkedIn, Indeed, and Glassdoor at once, merges duplicate postings, X-rays every posting for what job',
-    tech: ['JEV', 'React', 'MongoDB', 'Apify'],
+    description: 'A job search that runs LinkedIn, Indeed, and Glassdoor scrapers in parallel, merges duplicate postings, and ranks every posting by fit with an AI model. JWT auth, resume upload and parsing (PDF/DOCX), rate limiting, and Helmet security headers on an Express 5 API.',
+    tech: ['React', 'Express', 'MongoDB', 'Apify', 'TypeSafe Jev'],
     image: './triage.png',
     link: 'https://triage.aws-prac-route53.com/',
   },
@@ -154,6 +172,14 @@ export const projects = [
     tech: ['EC2', 'ALB', 'Terraform', 'Nginx'],
     image: './Terraformaws.jpg',
     link: 'https://github.com/Joeychez23/AWS-Notes-Terraform/',
+  },
+  {
+    slug: 'jev-pg',
+    title: 'Jev Playground',
+    description: 'A small website for trying TypeSafe\'s Jev model: write a state (text or JSON), define [Bool / Choice / Score] questions, and see typed answers, probabilities, and confidence.',
+    tech: ['Node', 'TypeSafe Jev'],
+    image: './jev-playground.png',
+    link: 'https://jev-playground.aws-prac-route53.com/',
   },
   {
     slug: 'auth0',
