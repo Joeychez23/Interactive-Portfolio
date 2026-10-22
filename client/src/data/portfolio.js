@@ -135,11 +135,11 @@ export const projects = [
   },
   {
     slug: 'city',
-    title: 'City Builder (work in progress)',
+    title: 'City Builder',
     description: 'A 3D city-building game in three.js, built with Claude Code (about 25,000 lines of JavaScript), with a road network of curved segments, A* trip routing, and lane-level traffic that queues at traffic lights, give-way junctions, and roundabouts. Simulates zoning, building growth, utilities, and a production-chain economy across 13 procedurally generated island maps, with compact saves and an Express/MongoDB account API with JWT auth.',
     tech: ['three.js', 'Vite', 'Express', 'MongoDB'],
     image: './city-builder.png',
-    link: 'https://city-builder.aws-prac-route53.com/',
+    link: 'https://github.com/Joeychez23/CityBuilder',
   },
   {
     slug: 'tone-radar',
@@ -147,7 +147,7 @@ export const projects = [
     description: 'A PWA that scores every sentence of an email for passive-aggression, blame, hedging, and unclear asks, and suggests rewrites that an AI model checks keep the original meaning.',
     tech: ['React', 'Express', 'MongoDB', 'TypeSafe Jev'],
     image: './radar.jpg',
-    link: 'https://tone-radar.aws-prac-route53.com/',
+    link: 'https://github.com/Joeychez23/Tone-Radar',
   },
   {
     slug: 'triage',
@@ -155,7 +155,7 @@ export const projects = [
     description: 'A job search that runs LinkedIn, Indeed, and Glassdoor scrapers in parallel, merges duplicate postings, and ranks every posting by fit with an AI model. JWT auth, resume upload and parsing (PDF/DOCX), rate limiting, and Helmet security headers on an Express 5 API.',
     tech: ['React', 'Express', 'MongoDB', 'Apify', 'TypeSafe Jev'],
     image: './triage.png',
-    link: 'https://triage.aws-prac-route53.com/',
+    link: 'https://github.com/Joeychez23/Triage',
   },
     {
     slug: 'aws-lambdas',
