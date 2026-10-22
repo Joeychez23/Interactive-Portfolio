@@ -179,7 +179,7 @@ export const projects = [
     description: 'A small website for trying TypeSafe\'s Jev model: write a state (text or JSON), define [Bool / Choice / Score] questions, and see typed answers, probabilities, and confidence.',
     tech: ['Node', 'TypeSafe Jev'],
     image: './jev-playground.png',
-    link: 'https://jev-playground.aws-prac-route53.com/',
+    link: 'https://github.com/Joeychez23/Jev-Playground',
   },
   {
     slug: 'auth0',
